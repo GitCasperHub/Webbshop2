@@ -24,9 +24,9 @@ namespace Webbshop.Pages
 
         }
 
-        public void OnPost()
+        public void OnPost(string id)
         {
-          
+            
 
 
         }

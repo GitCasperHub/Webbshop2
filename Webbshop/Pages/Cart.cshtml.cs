@@ -37,12 +37,19 @@ namespace Webbshop.Pages
 
         [BindProperty]
         public string CardHolder { get; set; }
+
         [BindProperty]
         public string CardExpire { get; set; }
 
-        public int Quantity { get; set; }
+        [BindProperty]
+        public double ShowMoms { get; set; }
 
-        public void OnGet(string removeId)
+        [BindProperty]
+        public bool ExpressShipping { get; set; }
+
+        [BindProperty]
+        public double PriceIncShipping { get; set; }
+        public void OnGet(string removeId, bool expressShipping)
         {
             TotalPrice = CartManager.TotalPrice;
 
@@ -51,12 +58,24 @@ namespace Webbshop.Pages
                 CartManager.RemoveFromCart(removeId);
             }
             TotalPrice = CartManager.GetPriceSum();
+
+             ShowMoms = TotalPrice  /  4;
+
+            PriceIncShipping = TotalPrice; //Price with free shipping.
+            if (expressShipping)
+            {
+                PriceIncShipping = TotalPrice + 199; //Price with express shipping.
+            }
+
         }
 
-        public void OnPost()
+        public void OnPost(bool expressShipping)
         {
-
-
+            PriceIncShipping = TotalPrice; //Price with free shipping.
+            if (expressShipping)
+            {
+                PriceIncShipping = TotalPrice + 199; //Price with express shipping.
+            }
             
         }
 

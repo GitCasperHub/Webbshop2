@@ -18,7 +18,6 @@ namespace Webbshop.Data
         public static bool ClearCart { get; set; }
         public static double PriceSum { get; set; }
         public static bool FoundDupe { get; set; }
-        public static int Quantity { get; set; }
 
         public static List<Product> GetAllProducts()
         {
@@ -59,7 +58,7 @@ namespace Webbshop.Data
 
             if (FoundDupe)
             {
-                Quantity++;
+                //Quantity++;
             }
             else
             {

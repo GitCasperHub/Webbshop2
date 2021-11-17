@@ -18,6 +18,8 @@ namespace Webbshop.Pages
         [BindProperty(SupportsGet = true)]
         public string Sort { get; set; }
 
+        [BindProperty]
+        public string Search { get; set; }
         public void OnGet()
         {
 
@@ -46,6 +48,27 @@ namespace Webbshop.Pages
             CartManager.AddToCart(id);
             gadgets = gadgets.OrderBy(Gadget => Gadget.Name).ToList();
 
+            if(Search != null)
+            {
+                string SearchLower = Search.ToLower();
+
+                if (SearchLower == "playstation")
+                {
+
+                   gadgets = gadgets.Where(gadget =>gadget.GadgetPlatform.Contains("PlayStation")).ToList();
+                }
+
+                else if (SearchLower == "xbox")
+                {
+
+                    gadgets = gadgets.Where(gadget => gadget.GadgetPlatform.Contains("Xbox Series X & Xbox One")).ToList();
+                }
+                else if (SearchLower == "branch")
+                {
+
+                    gadgets = gadgets.Where(gadget => gadget.Name.Contains("Branch")).ToList();
+                }
+            }
 
         }
     }

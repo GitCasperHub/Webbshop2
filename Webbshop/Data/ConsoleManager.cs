@@ -82,7 +82,7 @@ namespace Webbshop.Data
                         "It is the successor to Xbox 360 and the third base console in the Xbox series of video game consoles." +
                         "Moving away from its predecessor's PowerPC-based architecture, the Xbox One features an AMD Accelerated Processing Unit (APU) " +
                         "built around the x86-64 instruction set.",
-                        ImageURL = "https://www.netonnet.se/files/Content/Xbox/XboxOne_Content_Topp_1766x718.jpg"
+                        ImageURL = "https://cdn.cdon.com/media-dynamic/images/product/cloud/store/Consoles/000/078/486/636/78486636-138840235-11453-org.jpg?cache=132708244996171362?impolicy=product&imwidth=400"
 
                     },
                         new GameConsole()

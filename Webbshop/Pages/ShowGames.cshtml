@@ -45,41 +45,43 @@
 
 
 <form method="post">
-    @{ int i = 0;}
+    <div class="row">
+        @{ int i = 0;}
 
-    @foreach (var game in Model.Games)
-    {
+        @foreach (var game in Model.Games)
+        {
 
-        <div class="card mx-auto row" style="width: 18rem;">
-            <img class="card-img-top img-thumbnail " src="@game.ImageURL" alt="Card image cap">
-            <div class="card-body">
-                <h4 class="card-title ">@game.Name</h4>
-                <p>
-                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExample_@i"
-                       role="button" aria-expanded="true" aria-controls="collapseExample_@i">
-                        Description
-                    </a>
-                </p>
-                <div class="collapse" id="collapseExample_@i">
-                    <div class="card card-body">
-                        <p>@game.Description</p>
-                        <p>Release Date: @game.ReleaseDate</p>
-                        <p>Game Studio: @game.Studio</p>
-                        <p>Age Restriction: @game.AgeRestriction</p>
-                        <p>Genre: @game.Genre</p>
-                        <p>Critic Score: @game.CriticScore / 10</p>
+            <div class="card mx-auto row" style="width: 18rem;">
+                <img class="card-img-top img-thumbnail " src="@game.ImageURL" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title ">@game.Name</h4>
+                    <p>
+                        <a class="btn btn-light" data-toggle="collapse" href="#collapseExample_@i"
+                           role="button" aria-expanded="true" aria-controls="collapseExample_@i">
+                            Description
+                        </a>
+                    </p>
+                    <div class="collapse" id="collapseExample_@i">
+                        <div class="card card-body">
+                            <p>@game.Description</p>
+                            <p>Release Date: @game.ReleaseDate</p>
+                            <p>Game Studio: @game.Studio</p>
+                            <p>Age Restriction: @game.AgeRestriction</p>
+                            <p>Genre: @game.Genre</p>
+                            <p>Critic Score: @game.CriticScore / 10</p>
+                        </div>
                     </div>
+                    <h6> Playable Platforms: @game.Platform</h6>
+                    <h6> Quantity: @game.Stock </h6>
+                    <h6> Article Number: @game.Id</h6>
+                    <h5> Price: @game.Price Kr</h5>
+
+
+                    <button asp-route-id="@game.Id" type="submit">Add to Cart</button>
                 </div>
-                <h6> Playable Platforms: @game.Platform</h6>
-                <h6> Quantity: @game.Stock </h6>
-                <h6> Article Number: @game.Id</h6>
-                <h5> Price: @game.Price Kr</h5>
-
-
-                <button asp-route-id="@game.Id" type="submit">Add to Cart</button>
             </div>
-        </div>
 
-        i++;
-    }
+            i++;
+        }
+    </div>
 </form>

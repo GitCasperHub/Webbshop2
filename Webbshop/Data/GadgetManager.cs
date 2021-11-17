@@ -64,7 +64,7 @@ namespace Webbshop.Data
                         Name = "Xbox One Controller",
                         Price = 550,
                         Stock = 15,
-                        GadgetPlatform = "Xbox One & Xbox Series X",
+                        GadgetPlatform = "Xbox Series X & Xbox One",
                         ImageURL = "https://www.pricerunner.se/product/1200x630/1752541419/Microsoft-Xbox-One-Wireless-Controller-White.jpg",
                         Description = "Wireless Xbox One Controller, forward compatibility so it works with Xbox Series X aswell."
 

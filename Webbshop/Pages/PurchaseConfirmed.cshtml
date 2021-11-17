@@ -1,0 +1,20 @@
+﻿@page
+@model Webbshop.Pages.PurchaseConfirmedModel
+@{
+}
+
+
+
+
+<h1>Thank you for your Purchase!</h1>
+
+<h4>Your Order:</h4>
+
+@foreach(var product in Model.OrderList)
+            {
+                <div>
+                    <h5> @product.Name </h5>
+                    <p>@product.Price Kr</p>
+                    <p>Article Number: @product.Id</p>
+                </div>
+            }

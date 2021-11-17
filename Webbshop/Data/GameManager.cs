@@ -42,7 +42,7 @@ namespace Webbshop.Data
                         ReleaseDate = "1/10/2021",
                         Studio = "Electronic Arts ",
                         CriticScore = 7,
-                        ImageURL = "https://cdn.akamai.steamstatic.com/steam/apps/1506830/capsule_616x353.jpg?t=1626198059"
+                        ImageURL = "https://cdn.insidesport.co/wp-content/uploads/2021/07/12192307/dfzhhzs.jpg"
 
                     },
                      new Game()

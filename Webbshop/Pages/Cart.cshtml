@@ -17,9 +17,10 @@
 </nav>
 
 
-<h1>Din Kundvagn</h1>
+<h1 class="text-center">Din Kundvagn</h1>
 <div class="my-3">
     <h4>Total Price: @Model.TotalPrice Kr</h4>
+    <h6>VAT: @Model.ShowMoms Kr (25%)</h6>
 </div>
 
 
@@ -44,10 +45,7 @@
                         <p>Article Number: @product.Id</p>
                     </div>
                     <h5>@product.Price Kr</h5>
-                    <div>
-                        <h5 class="text-black-50">Quanity: </h5>
-                        <input class="btn small" asp-for="@Model.Quantity" type="number" />
-                    </div>
+                    
                     <a class="btn btn-danger" asp-route-removeId="@product.Id">Remove Article</a>
                 </div>
             </div>
@@ -57,13 +55,16 @@
 </form>
 
 @* Två knappar, vanlig frakt och express. Lyser runt den man tryckt på *@
-<div class="my-3 text-center">
+<div class="my-3">
     <h5>Select shipping method </h5>
-    <button type="button" class="btn btn-outline-primary">Regular Shipping: Free Shipping</button>
-    <button type="button" class="btn btn-outline-primary">Express shipping: 199kr</button>
+    <form method="post">
+        <a type="button" class="btn btn-outline-primary" asp-route-expressShipping="false">Regular Shipping: Free</a>
+        <a type="button" class="btn btn-outline-primary" asp-route-expressShipping="true">Express Shipping: 199kr</a>
+
+    </form>
 </div>
 
-<div class="my-3 text-center">
+<div class="my-3 ">
     <h5>Shipping Details</h5>
     <div>
         <input type="text" asp-for="@Model.WholeName" placeholder="Full Name" />
@@ -82,44 +83,55 @@
 
 
 
+<div class="row">
+    <div class="col-9">
+        <div class="my-3 text-left">
+            <h5>Select Payment Method</h5>
+            <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseExample"
+               role="button" aria-expanded="true" aria-controls="collapseExample">
+                Faktura
+            </a>
+            <div class="collapse" id="collapseExample">
+                <div>
+                    <input type="text" asp-for="@Model.WholeName" placeholder="Full Name" />
+                </div>
+                <div>
+                    <input type="text" asp-for="@Model.PostalCode" placeholder="Postal Code" />
 
-<div class="my-3 text-left">
-    <h5>Select Payment Method</h5>
-    <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseExample"
-       role="button" aria-expanded="true" aria-controls="collapseExample">
-        Faktura
-    </a>
-    <div class="collapse" id="collapseExample">
-        <div>
-            <input type="text" asp-for="@Model.WholeName" placeholder="Full Name" />
+                    <input type="text" asp-for="@Model.Adress" placeholder="Adress" />
+                </div>
+                <div>
+                    <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phonenumber" />
+                </div>
+            </div>
         </div>
-        <div>
-            <input type="text" asp-for="@Model.PostalCode" placeholder="Postal Code" />
-
-            <input type="text" asp-for="@Model.Adress" placeholder="Adress" />
-        </div>
-        <div>
-            <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phonenumber" />
+        <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseCard"
+           role="button" aria-expanded="true" aria-controls="collapseCard">
+            Creditcard
+        </a>
+        <div class="collapse" id="collapseCard">
+            <div>
+                <input type="text" asp-for="@Model.CardHolder" placeholder="Full Name" />
+            </div>
+            <div>
+                <input type="text" asp-for="@Model.CardNumber" placeholder="Card Number" />
+            </div>
+            <input type="text" asp-for="@Model.CVCcode" placeholder="CVC Code" />
+            <input type="text" asp-for="@Model.CardExpire" placeholder="Expiring Date (01-25)" />
         </div>
     </div>
-</div>
-    <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseCard"
-       role="button" aria-expanded="true" aria-controls="collapseCard">
-        Creditcard
-    </a>
-    <div class="collapse" id="collapseCard">
-        <div>
-            <input type="text" asp-for="@Model.CardHolder" placeholder="Full Name" />
-        </div>
-        <div>
-            <input type="text" asp-for="@Model.CardNumber" placeholder="Card Number" />
-        </div>
-        <input type="text" asp-for="@Model.CVCcode" placeholder="CVC Code" />
-        <input type="text" asp-for="@Model.CardExpire" placeholder="Expiring Date (01-25)" />
-    </div>
+    <div class="col-3">
+        <h3>Price Inc. Shipping: @Model.PriceIncShipping kr </h3>
         
+        
+    </div>
+</div>      
            
-        
+<div class="text-center">
+    <a class="btn btn-outline-success" asp-page="/PurchaseConfirmed">Confirm Order</a>
+
+
+</div>        
 
     
 

@@ -55,36 +55,36 @@
                 <input type="text" asp-for="@Model.NewName" placeholder="@Model.Product.Name" />
             </div>
             <div>
-                <input type="number" asp-for="@Model.Price" placeholder="Pris" />
+                <input type="number" asp-for="@Model.NewPrice" placeholder="@Model.Product.Price" />
                 Pris(kr)
             </div>
             <div>
-                <input type="text" asp-for="@Model.AgeRestriction" placeholder="Åldersgräns" />
+                <input type="number" asp-for="@Model.NewAgeRestriction" placeholder="Åldersgräns" />
                 Åldersgräns
             </div>
             <div>
-                <input type="text" asp-for="@Model.Platform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
+                <input type="text" asp-for="@Model.NewPlatform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
             </div>
             <div>
-                <input type="text" asp-for="@Model.Description" placeholder="Beskrivning" />
+                <input type="text" asp-for="@Model.NewDescription" placeholder="@Model.Product.Description" />
             </div>
             <div>
-                <input type="text" asp-for="@Model.Stock" placeholder="Lagerstatus" />
+                <input type="number" asp-for="@Model.NewStock" placeholder="Model.Product.Stock" />
             </div>
             <div>
-                <input type="text" asp-for="@Model.Genre" placeholder="Genre" />
+                <input type="text" asp-for="@Model.NewGenre" placeholder="Genre" />
             </div>
             <div>
-                <input type="text" asp-for="@Model.ReleaseDate" placeholder="Releasedatum" />
+                <input type="text" asp-for="@Model.NewReleaseDate" placeholder="Releasedatum" />
             </div>
             <div>
-                <input class="box-shadow" type="text" asp-for="@Model.Studio" placeholder="Studio" />
+                <input class="box-shadow" type="text" asp-for="@Model.NewStudio" placeholder="Studio" />
             </div>
             <div>
-                <input type="text" asp-for="@Model.CriticScore" placeholder="Betyg" />
+                <input type="number" asp-for="@Model.NewCriticScore" placeholder="Betyg" />
             </div>
             <div>
-                <input type="text" asp-for="@Model.ImageURL" placeholder="Omslagsbild (URL)" />
+                <input type="text" asp-for="@Model.NewImageURL" placeholder="@Model.Product.ImageURL" />
             </div>
             <button class="btn btn-primary" type="submit" asp-route-saveChanges="true">Save Changes</button>
 
