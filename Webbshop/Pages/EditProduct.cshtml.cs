@@ -15,7 +15,7 @@ namespace Webbshop.Pages
 
         List<Product> allProducts = CartManager.GetAllProducts();
 
-        public string SearchId { get; set; }
+        public string SearchId { get; set; } = null;
         public bool IdMatch { get; set; }
         public Product Product { get; set; }
 

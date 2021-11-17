@@ -66,11 +66,11 @@ namespace Webbshop.Pages
             {
                 PriceIncShipping = TotalPrice + 199; //Price with express shipping.
             }
-
         }
 
         public void OnPost(bool expressShipping)
         {
+            ExpressShipping = expressShipping;
             PriceIncShipping = TotalPrice; //Price with free shipping.
             if (expressShipping)
             {
