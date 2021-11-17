@@ -16,6 +16,9 @@ namespace Webbshop.Data
         public static int Moms { get; set; }
         public static int RemoveCart { get; set; }
         public static bool ClearCart { get; set; }
+        public static double PriceSum { get; set; }
+        public static bool FoundDupe { get; set; }
+        public static int Quantity { get; set; }
 
         public static List<Product> GetAllProducts()
         {
@@ -37,20 +40,31 @@ namespace Webbshop.Data
             return AllProductsList;
         }
 
+        public static void CheckDupes(string id)
+        {
+            FoundDupe = false;
+            foreach (var product in CartList)
+            {
+                if (product.Id == id)
+                {
+                    FoundDupe = true;
+                }
+            }
+        }
+
         public static void AddToCart(string id)
         {
             List<Product> allProducts = GetAllProducts();
+            CheckDupes(id);
 
-
-            TotalPrice = 0;
-            foreach( var product in CartList)
+            if (FoundDupe)
             {
-                TotalPrice += product.Price;
-
+                Quantity++;
             }
+            else
+            {
 
-
-            for (int i = allProducts.Count - 1; i > 0; i--)
+                for (int i = allProducts.Count - 1; i > 0; i--)
             {
                 if (allProducts[i].Id == id)
                 {
@@ -59,7 +73,7 @@ namespace Webbshop.Data
                     break;
                 }
             }
-
+            }
 
         }
         public static void RemoveFromCart(string removeId)
@@ -74,5 +88,18 @@ namespace Webbshop.Data
                 }
             }
         }
+
+        public static double GetPriceSum()
+        {
+            PriceSum = 0;
+            foreach (var product in CartList)
+            {
+                PriceSum += product.Price;
+            }
+
+            return PriceSum;
+
+        }
+
     }
 }
