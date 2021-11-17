@@ -1,0 +1,85 @@
+﻿@page
+@model Webbshop.Pages.ShowGamesModel
+@{
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" asp-page="/ShowGames">Games</a>
+    <a class="navbar-brand" asp-page="/ShowConsoles">Consoles</a>
+    <a class="navbar-brand" asp-page="/ShowGadgets">Gadgets</a>
+    <a class="navbar-brand" asp-page="/Cart">Cart</a>
+    <a class="navbar-brand navbar-nav ml-auto" asp-page="/AdminAddGame">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+
+@* Search funktion bland Games *@
+<form method="post">
+    <div class="col-3 ">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" asp-for="Search">
+            <input type="submit" value="Submit" />
+
+        </div>
+    </div>
+</form>
+
+
+<h3 class="text-center">Here are the games currently in stock</h3>
+
+
+@* Dropdown Sortering, via pris, a-z och z-a *@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sortera Efter:
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="ShowGames?Sort=Price">Price</a>
+        <a class="dropdown-item" href="ShowGames?Sort=A2Z">Bokstavsordning A - Z</a>
+        <a class="dropdown-item" href="ShowGames?Sort=Z2A">Bokstavsordning Z - A</a>
+
+    </div>
+</div>
+
+
+<form method="post">
+    @{ int i = 0;}
+
+    @foreach (var game in Model.Games)
+    {
+
+        <div class="card mx-auto row" style="width: 18rem;">
+            <img class="card-img-top img-thumbnail " src="@game.ImageURL" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title ">@game.Name</h4>
+                <p>
+                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExample_@i"
+                       role="button" aria-expanded="true" aria-controls="collapseExample_@i">
+                        Description
+                    </a>
+                </p>
+                <div class="collapse" id="collapseExample_@i">
+                    <div class="card card-body">
+                        <p>@game.Description</p>
+                        <p>Release Date: @game.ReleaseDate</p>
+                        <p>Game Studio: @game.Studio</p>
+                        <p>Age Restriction: @game.AgeRestriction</p>
+                        <p>Genre: @game.Genre</p>
+                        <p>Critic Score: @game.CriticScore / 10</p>
+                    </div>
+                </div>
+                <h6> Playable Platforms: @game.Platform</h6>
+                <h6> Quantity: @game.Stock </h6>
+                <h6> Article Number: @game.Id</h6>
+                <h5> Price: @game.Price Kr</h5>
+
+
+                <button asp-route-id="@game.Id" type="submit">Add to Cart</button>
+            </div>
+        </div>
+
+        i++;
+    }
+</form>

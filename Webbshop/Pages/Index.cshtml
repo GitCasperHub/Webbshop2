@@ -1,0 +1,78 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" asp-page="/ShowGames">Games</a>
+    <a class="navbar-brand" asp-page="/ShowConsoles">Consoles</a>
+    <a class="navbar-brand" asp-page="/ShowGadgets">Gadgets</a>
+    <a class="navbar-brand" asp-page="/Cart">Cart</a>
+  
+    <a class="navbar-brand navbar-nav ml-auto" asp-page="/AdminAddGame">Admin</a>
+   
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Welcome to EC-Shop</h1>
+        <p class="lead">Reseller of Games, Consoles and Gadgets </p>     
+        <div class="row ">
+
+            @* Utvalt Spel *@
+            <div class="col-3">
+                @foreach (var game in Model.games)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@game.ImageURL" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title ">@game.Name</h4>
+                            <h5 class="card-text">@game.Price Kr</h5>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-1"></div>
+            <div class="col-3">
+                @foreach (var console in Model.consoles)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@console.ImageURL" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title ">@console.Name</h4>
+                            <h5 class="card-text">@console.Price Kr</h5>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-1"></div>
+            <div class="col-3">
+                @foreach (var gadget in Model.gadgets)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@gadget.ImageURL" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title ">@gadget.Name</h4>                           
+                            <h5 class="card-text">@gadget.Price Kr</h5>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+</div>

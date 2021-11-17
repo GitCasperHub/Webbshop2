@@ -1,0 +1,89 @@
+﻿@page
+@model AdminAddGameModel
+@{
+}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" asp-page="/ShowGames">Games</a>
+    <a class="navbar-brand" asp-page="/ShowConsoles">Consoles</a>
+    <a class="navbar-brand" asp-page="/ShowGadgets">Gadgets</a>
+    <a class="navbar-brand text-right" asp-page="/AdminAddGame">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<form method="post">
+
+    <a class="btn btn-danger btn-sm checked" asp-page="/AdminAddGame">Add a Game</a>
+    <a class="btn btn-outline-danger btn-sm checked" asp-page="">Add a Console</a>
+    <a class="btn btn-outline-danger btn-sm checked" asp-page="">Add a Gadget</a>
+    <a class="my-auto btn btn-outline-danger btn-sm checked" asp-page="/EditProduct">Remove or Change a product</a>
+
+
+    <div>
+        <h2 class="text">Add a new game</h2>
+    </div>
+
+    <div>
+        <input type="text" asp-for="@Model.Name" placeholder="Namn" />
+    </div>
+    <div>
+        <input type="number" asp-for="@Model.Price" placeholder="Pris" />
+        Pris(kr)
+    </div>
+    <div>
+        <input type="text" asp-for="@Model.AgeRestriction" placeholder="Åldersgräns" />
+        Åldersgräns
+    </div>
+    <div>
+        <input type="text" asp-for="@Model.Platform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
+    </div>
+    <div>
+        <input type="text" asp-for="@Model.Description" placeholder="Beskrivning" />
+    </div>
+    <div>
+        <input type="text" asp-for="@Model.Stock" placeholder="Lagerstatus" />
+    </div>
+    <div>
+        <input type="text" asp-for="@Model.Genre" placeholder="Genre" />
+    </div>
+    <div>
+        <input type="text" asp-for="@Model.ReleaseDate" placeholder="Releasedatum" />
+    </div>
+    <div>
+        <input class="box-shadow" type="text" asp-for="@Model.Studio" placeholder="Studio" />
+    </div>
+    <div>
+        <input type="text" asp-for="@Model.CriticScore" placeholder="Betyg" />
+    </div>
+    <div>
+        <input type="text" asp-for="@Model.ImageURL" placeholder="Omslagsbild (URL)" />
+    </div>
+
+    <div class="my-5">
+        <button class="btn btn-primary btn-sm" type="submit" asp-route-addToPendingList="true">Lägg till i pending lista</button>
+
+        <button class="btn btn-danger btn-sm" type="submit" asp-route-mergeLists="true">Slå ihop listor</button>
+
+    </div>
+
+
+</form>
+
+
+@foreach (var AddedGame in Model.PendingGames)
+{
+
+        <div class="card mx-auto row" style="width: 18rem;">
+                <img class="card-img-top img-thumbnail " src="@AddedGame.ImageURL" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title ">@AddedGame.Name</h4>
+                    <p>@AddedGame.Description</p>
+                    <h5> Pris: @AddedGame.Price  Kr</h5>
+                    <button class="btn btn-outline-primary btn-sm" type="submit" asp-route-changeGame="true">Ändra</button>
+                    <button class="btn btn-outline-primary btn-sm" type="submit" asp-route-removeFromPending="true">Ta bort</button>
+                </div>
+        </div>
+}

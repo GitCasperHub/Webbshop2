@@ -1,0 +1,73 @@
+﻿@page
+@model Webbshop.Pages.ShowGadgetsModel
+@{
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" asp-page="/ShowGames">Games</a>
+    <a class="navbar-brand" asp-page="/ShowConsoles">Consoles</a>
+    <a class="navbar-brand" asp-page="/ShowGadgets">Gadgets</a>   
+    <a class="navbar-brand" asp-page="/Cart">Cart</a>
+    <a class="navbar-brand navbar-nav ml-auto" asp-page="/AdminAddGame">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<h3 class="textcenter">Different Gadgets for Consoles</h3>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sortera Efter:
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="ShowGadgets?Sort=Price">Price</a>
+        <a class="dropdown-item" href="ShowGadgets?Sort=A2Z">Bokstavsordning A - Z</a>
+        <a class="dropdown-item" href="ShowGadgets?Sort=Z2A">Bokstavsordning Z - A</a>
+    </div>
+</div>
+
+
+
+<form method="post">
+    @{ int i = 0;}
+    @foreach (var gadget in Model.gadgets)
+    {
+        <div class="card mx-auto row" style="width: 18rem;">
+            <img class="card-img-top img-thumbnail " src="@gadget.ImageURL" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title ">@gadget.Name</h4>
+                <p>
+                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExample_@i"
+                       role="button" aria-expanded="true" aria-controls="collapseExample_@i">
+                        Description
+                    </a>
+                </p>
+                <div class="collapse" id="collapseExample_@i">
+                    <div class="card card-body">
+                        <p>@gadget.Description</p>
+                        <p>Platforms: @gadget.GadgetPlatform</p>
+                    </div>
+                </div>
+                <h6> Quantity: @gadget.Stock </h6>
+                <h6> Article Number: @gadget.Id</h6>
+                <h5> Pris: @gadget.Price Kr</h5>
+
+                <button asp-route-id="@gadget.Id" type="submit">Add to Cart</button>
+            </div>
+        </div>
+        i++;
+    }
+</form>
+ 
+
+
+
+
+
+
+
+
+
+
+

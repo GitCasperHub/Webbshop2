@@ -1,0 +1,30 @@
+﻿@page
+@model Webbshop.Pages.CartModel
+@{     
+}
+
+<h1>Din Kundvagn</h1>
+<h4>Total Price: </h4>
+
+
+
+
+<form method="post">
+    @foreach (var product in Model.CartList)
+    {
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@product.ImageURL" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@product.Name</h5>
+                <p class="card-text">@product.Description</p>
+                <p>Article Number: @product.Id</p>
+                <h5>@product.Price Kr</h5>
+
+
+                <a class="btn btn-danger" asp-route-removeId="@product.Id" >Remove Article</a>
+            </div>
+        </div>
+
+    }
+</form>
