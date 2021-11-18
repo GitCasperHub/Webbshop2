@@ -166,7 +166,15 @@ namespace Webbshop.Data
             }
         }
 
-
+        public static void RemovePendingGame(string removeId)
+        {
+            for (int i = AddedGames.Count - 1; i >= 0; i--)
+            {
+                if (AddedGames[i].Id == removeId)
+                {
+                    AddedGames.Remove(AddedGames[i]);
+                }
+            }
+        }
     }
-
 }

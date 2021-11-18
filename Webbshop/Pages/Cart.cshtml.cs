@@ -51,13 +51,12 @@ namespace Webbshop.Pages
         public double PriceIncShipping { get; set; }
         public void OnGet(string removeId, bool expressShipping, string incQuantity, string decQuantity)
         {
-            TotalPrice = CartManager.TotalPrice;
 
             if (removeId != null ) //Remove product from cart
             {
                 CartManager.RemoveFromCart(removeId);
             }
-            TotalPrice = CartManager.GetPriceSum();
+
 
              ShowMoms = TotalPrice  /  4;
 
@@ -78,8 +77,8 @@ namespace Webbshop.Pages
                 CartManager.DecQuantity(decQuantity);
                 decQuantity = null;
             }
-
-
+            //TotalPrice = CartManager.TotalPrice;
+            TotalPrice = CartManager.GetPriceSum();
         }
 
         public void OnPost(bool expressShipping)
@@ -90,9 +89,6 @@ namespace Webbshop.Pages
             {
                 PriceIncShipping = TotalPrice + 199; //Price with express shipping.
             }
-
-
         }
-
     }
 }

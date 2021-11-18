@@ -92,8 +92,7 @@
                     <h4 class="card-title ">@AddedGame.Name</h4>
                     <p>@AddedGame.Description</p>
                     <h5> Pris: @AddedGame.Price  Kr</h5>
-                    <button class="btn btn-outline-primary btn-sm" type="submit" asp-route-changeGame="true">Ändra</button>
-                    <button class="btn btn-outline-primary btn-sm" type="submit" asp-route-removeFromPending="true">Ta bort</button>
+                    <a class="btn btn-outline-primary btn-sm" type="submit" asp-route-removeId="@AddedGame.Id">Ta bort</a>
                 </div>
             </div>
         }

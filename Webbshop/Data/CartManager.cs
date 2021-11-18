@@ -129,8 +129,9 @@ namespace Webbshop.Data
                 if (CartList[i].Id == removeId)
                 {
                     TotalPrice -= CartList[i].Price;
+                    CartList[i].CartQuantity = 0;
                     CartList.Remove(CartList[i]);
-                    DecQuantity(removeId);
+                    
                 }
             }
         }
@@ -138,9 +139,10 @@ namespace Webbshop.Data
         public static double GetPriceSum()
         {
             PriceSum = 0;
-            foreach (var product in CartList)
+            foreach (Product product in CartList)
             {
-                PriceSum += (product.Price * Product.CartQuantity);
+
+                PriceSum += product.Price * product.CartQuantity;
             }
             return PriceSum;
         }

@@ -33,8 +33,15 @@ namespace Webbshop.Pages
         public double CriticScore { get; set; }
         public string ImageURL { get; set; }
 
-        public void OnGet()
+        public void OnGet(string removeId)
         {
+
+            if (removeId != null)
+            {
+                Data.AdminManager.RemoveProduct(removeId);
+                removeId = null;
+            }
+
         }
 
         public void OnPost(bool addToPendingList, bool mergeLists)
@@ -52,6 +59,7 @@ namespace Webbshop.Pages
             {
                 // Slår ihop pending listan 
                 Data.GameManager.AddNewGameList();
+                Data.GameManager.AddedGames.Clear();
                 mergeLists = false;
             }
         }
