@@ -15,5 +15,7 @@ namespace Webbshop.Models
         public string ImageURL { get; set; }
         public bool ToCart{ get; set; }
 
+        public int CartQuantity { get; set; }
+
     }
 }

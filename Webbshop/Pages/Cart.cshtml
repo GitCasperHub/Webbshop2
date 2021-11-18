@@ -46,7 +46,12 @@
                         <p>Article Number: @product.Id</p>
                     </div>
                     <h5>@product.Price Kr</h5>
-                    
+
+                        <h6>Quantity: @product.CartQuantity</h6>
+                        <a class="btn btn-outline-primary" asp-route-incQuantity="@product.Id">+</a>
+                        <a class="btn btn-outline-primary" asp-route-decQuantity="@product.Id">-</a>
+
+
                     <a class="btn btn-danger" asp-route-removeId="@product.Id">Remove Article</a>
                 </div>
             </div>

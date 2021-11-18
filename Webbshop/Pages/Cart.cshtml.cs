@@ -49,11 +49,11 @@ namespace Webbshop.Pages
 
         [BindProperty]
         public double PriceIncShipping { get; set; }
-        public void OnGet(string removeId, bool expressShipping)
+        public void OnGet(string removeId, bool expressShipping, string incQuantity, string decQuantity)
         {
             TotalPrice = CartManager.TotalPrice;
 
-            if (removeId != null )
+            if (removeId != null ) //Remove product from cart
             {
                 CartManager.RemoveFromCart(removeId);
             }
@@ -66,6 +66,20 @@ namespace Webbshop.Pages
             {
                 PriceIncShipping = TotalPrice + 199; //Price with express shipping.
             }
+
+            if (incQuantity != null) //Increase quantity for product in cart
+            {
+                CartManager.IncQuantity(incQuantity);
+                incQuantity = null;
+            }
+
+            if (decQuantity != null) //Decrease quantity for product in cart
+            {
+                CartManager.DecQuantity(decQuantity);
+                decQuantity = null;
+            }
+
+
         }
 
         public void OnPost(bool expressShipping)
@@ -76,7 +90,8 @@ namespace Webbshop.Pages
             {
                 PriceIncShipping = TotalPrice + 199; //Price with express shipping.
             }
-            
+
+
         }
 
     }

@@ -19,6 +19,8 @@ namespace Webbshop.Data
         public static double PriceSum { get; set; }
         public static bool FoundDupe { get; set; }
 
+        public static Product Product { get; set; }
+
         public static List<Product> GetAllProducts()
         {
             AllProductsList.Clear();
@@ -38,7 +40,19 @@ namespace Webbshop.Data
 
             return AllProductsList;
         }
+        public static Product GetProdFromId(string id)
+        {
 
+            foreach (var product in CartList)
+            {
+                if (product.Id == id)
+                {
+                    Product = product;
+                }
+            }
+
+            return Product;
+        }
         public static void CheckDupes(string id)
         {
             FoundDupe = false;
@@ -51,14 +65,46 @@ namespace Webbshop.Data
             }
         }
 
+        public static string IncQuantity(string id)
+        {
+            var product = GetProdFromId(id);
+
+            if (product.CartQuantity < product.Stock)
+            {
+                product.CartQuantity++;
+                return "Increase Successful!";
+            }
+            else
+            {
+                return "Increase NOT Successful!";
+            }
+        }
+
+        public static string DecQuantity(string id)
+        {
+            var product = GetProdFromId(id);
+
+            if (product.CartQuantity > 1)
+            {
+                product.CartQuantity--;
+                return "Decrease Successful!";
+            }
+            else
+            {
+                return "Decrease NOT Successful!";
+            }
+        }
+
         public static void AddToCart(string id)
         {
             List<Product> allProducts = GetAllProducts();
+
+
             CheckDupes(id);
 
             if (FoundDupe)
             {
-                //Quantity++;
+                IncQuantity(id);
             }
             else
             {
@@ -68,7 +114,7 @@ namespace Webbshop.Data
                 if (allProducts[i].Id == id)
                 {
                     CartList.Add(allProducts[i]);
-                    
+                    IncQuantity(id);
                     break;
                 }
             }
@@ -84,6 +130,7 @@ namespace Webbshop.Data
                 {
                     TotalPrice -= CartList[i].Price;
                     CartList.Remove(CartList[i]);
+                    DecQuantity(removeId);
                 }
             }
         }
@@ -93,11 +140,9 @@ namespace Webbshop.Data
             PriceSum = 0;
             foreach (var product in CartList)
             {
-                PriceSum += product.Price;
+                PriceSum += (product.Price * Product.CartQuantity);
             }
-
             return PriceSum;
-
         }
 
     }
