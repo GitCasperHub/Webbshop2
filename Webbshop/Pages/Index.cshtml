@@ -18,96 +18,100 @@
     </button>
 </nav>
 
+
+
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">Welcome to EC-Shop</h1>
         <p class="lead">Reseller of Games, Consoles and Gadgets </p>
+        <h4 class="display-5 text-center">Hot products!</h4>
         <div class="row my-3 text-center align-items-center">
 
             @* Utvalt Spel *@
-            
-                <div class="my-3 col-4">
-                    @foreach (var game in Model.games)
-                    {
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="@game.ImageURL" alt="Card image cap">
-                            <div class="card-body">
-                                <p>
-                                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExampleGame"
-                                       role="button" aria-expanded="true" aria-controls="collapseExampleGame">
-                                        Description
-                                    </a>
-                                </p>
-                                <div class="collapse" id="collapseExampleGame">
-                                    <div class="card card-body">
-                                        <p>@game.Description</p>
-                                    </div>
+
+
+            <div class="my-3 col-4">
+                @foreach (var game in Model.games)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@game.ImageURL" alt="Card image cap">
+                        <div class="card-body">
+                            <p>
+                                <a class="btn btn-light" data-toggle="collapse" href="#collapseExampleGame"
+                                   role="button" aria-expanded="true" aria-controls="collapseExampleGame">
+                                    Description
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseExampleGame">
+                                <div class="card card-body">
+                                    <p>@game.Description</p>
                                 </div>
-                                <h4 class="card-title ">@game.Name</h4>
-                                <h5 class="card-text">@game.Price Kr</h5>
-                                
                             </div>
+                            <h4 class="card-title ">@game.Name</h4>
+                            <h5 class="card-text">@game.Price Kr</h5>
+
                         </div>
-                    }
-                </div>
-            
+                    </div>
+                }
+            </div>
 
 
-            
-                <div class="my-3 col-4">
 
-                    @foreach (var console in Model.consoles)
-                    {
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="@console.ImageURL" alt="Card image cap">
-                            <div class="card-body">
-                                <p>
-                                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExampleConsole"
-                                       role="button" aria-expanded="true" aria-controls="collapseExampleConsole">
-                                        Description
-                                    </a>
-                                </p>
-                                <div class="collapse" id="collapseExampleConsole">
-                                    <div class="card card-body">
-                                        <p>@console.Description</p>
-                                    </div>
+
+            <div class="my-3 col-4">
+
+                @foreach (var console in Model.consoles)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@console.ImageURL" alt="Card image cap">
+                        <div class="card-body">
+                            <p>
+                                <a class="btn btn-light" data-toggle="collapse" href="#collapseExampleConsole"
+                                   role="button" aria-expanded="true" aria-controls="collapseExampleConsole">
+                                    Description
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseExampleConsole">
+                                <div class="card card-body">
+                                    <p>@console.Description</p>
                                 </div>
-                                <h4 class="card-title ">@console.Name</h4>
-                                <h5 class="card-text">@console.Price Kr</h5>
-                               
                             </div>
+                            <h4 class="card-title ">@console.Name</h4>
+                            <h5 class="card-text">@console.Price Kr</h5>
+
                         </div>
-                    }
-                </div>
-           
+                    </div>
+                }
+            </div>
 
 
-           
-                <div class="my-3 col-4">
-                    @foreach (var gadget in Model.gadgets)
-                    {
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="@gadget.ImageURL" alt="Card image cap">
-                            <div class="card-body">
-                                <p>
-                                    <a class="btn btn-light" data-toggle="collapse" href="#collapseExampleGadget"
-                                       role="button" aria-expanded="true" aria-controls="collapseExampleGadget">
-                                        Description
-                                    </a>
-                                </p>
-                                <div class="collapse" id="collapseExampleGadget">
-                                    <div class="card card-body">
-                                        <p>@gadget.Description</p>
-                                    </div>
+
+
+            <div class="my-3 col-4">
+                @foreach (var gadget in Model.gadgets)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="@gadget.ImageURL" alt="Card image cap">
+                        <div class="card-body">
+                            <p>
+                                <a class="btn btn-light" data-toggle="collapse" href="#collapseExampleGadget"
+                                   role="button" aria-expanded="true" aria-controls="collapseExampleGadget">
+                                    Description
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseExampleGadget">
+                                <div class="card card-body">
+                                    <p>@gadget.Description</p>
                                 </div>
-                                <h4 class="card-title ">@gadget.Name</h4>
-                                <h5 class="card-text">@gadget.Price Kr</h5>
-                                
                             </div>
-                        </div>
-                    }
+                            <h4 class="card-title ">@gadget.Name</h4>
+                            <h5 class="card-text">@gadget.Price Kr</h5>
 
-                </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
         </div>
     </div>
 </div>
