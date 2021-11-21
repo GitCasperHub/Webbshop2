@@ -17,8 +17,8 @@
 </nav>
 
 <a class="btn btn-outline-danger btn-sm checked" asp-page="/AdminAddGame">Add a Game</a>
-<a class="btn btn-outline-danger btn-sm checked" asp-page="/AdminAddGame">Add a Console</a>
-<a class="btn btn-outline-danger btn-sm checked" asp-page="/AdminAddGame">Add a Gadget</a>
+<a class="btn btn-outline-danger btn-sm checked" asp-page="/AdminAddConsole">Add a Console</a>
+<a class="btn btn-outline-danger btn-sm checked" asp-page="/AdminAddGadget">Add a Gadget</a>
 <a class="my-auto btn btn-danger btn-sm checked" asp-page="/EditProduct">Remove or Change a product</a>
 
 
@@ -66,17 +66,17 @@
                         </div>
                         <div>
                             <input type="number" asp-for="@Model.NewPrice" placeholder="@Model.Product.Price" />
-                            Pris(kr)
+                            Price (kr)
                         </div>
                         <div>
                             <input type="number" asp-for="@Model.NewAgeRestriction" placeholder="Åldersgräns" />
-                            Åldersgräns
+                            Age restriction (years)
                         </div>
                         <div>
-                            <input type="text" asp-for="@Model.NewPlatform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
+                            <textarea asp-for="@Model.NewPlatform" placeholder="Platform ex. Xbox 360, Playstation 4, Nintendo DS"></textarea>
                         </div>
                         <div>
-                            <input type="text" asp-for="@Model.NewDescription" placeholder="@Model.Product.Description" />
+                            <textarea asp-for="@Model.NewDescription" placeholder="@Model.Product.Description"></textarea>
                         </div>
                         <div>
                             <input type="number" asp-for="@Model.NewStock" placeholder="Model.Product.Stock" />
@@ -85,13 +85,13 @@
                             <input type="text" asp-for="@Model.NewGenre" placeholder="Genre" />
                         </div>
                         <div>
-                            <input type="text" asp-for="@Model.NewReleaseDate" placeholder="Releasedatum" />
+                            <input type="text" asp-for="@Model.NewReleaseDate" placeholder="Release date" />
                         </div>
                         <div>
                             <input class="box-shadow" type="text" asp-for="@Model.NewStudio" placeholder="Studio" />
                         </div>
                         <div>
-                            <input type="number" asp-for="@Model.NewCriticScore" placeholder="Betyg" />
+                            <input type="number" asp-for="@Model.NewCriticScore" placeholder="Critic score" />
                         </div>
                         <div>
                             <input type="text" asp-for="@Model.NewImageURL" placeholder="@Model.Product.ImageURL" />
@@ -103,9 +103,9 @@
                         <button class="btn btn-primary my-5" type="submit" asp-route-saveChanges="true">Save Changes</button>
 
                         <button class="btn btn-outline-danger my-5" type="submit" asp-route-deleteProduct="true">Delete product</button>
-                        
+
                     </div>
-                    
+
                     <div class="col-6 ">
 
                         <div class="card mx-auto row text-right" style="width: 18rem;">
@@ -131,15 +131,125 @@
                         </div>
                     </div>
                 </div>
-                
+
 
             }
             else if (Model.SearchId.Substring(0, 2) == "CE")
             {
+                <div class="row">
+                    <div class="col-6">
+                        <div>
+                            <input type="text" asp-for="@Model.NewName" placeholder="@Model.Product.Name" />
+                        </div>
+                        <div>
+                            <input type="number" asp-for="@Model.NewPrice" placeholder="@Model.Product.Price" />
+                            Price (kr)
+                        </div>
+
+                        <div>
+                            <textarea asp-for="@Model.NewDescription" placeholder="@Model.Product.Description"></textarea>
+                        </div>
+                        <div>
+                            <input type="number" asp-for="@Model.NewStock" placeholder="Stock" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewConsoleRelease" placeholder="Release date" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewConsoleDeveloper" placeholder="Developer" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewImageURL" placeholder="@Model.Product.ImageURL" />
+                        </div>
+
+                        <p>Current image used:</p>
+                        <p>@Model.Product.ImageURL</p>
+
+                        <button class="btn btn-primary my-5" type="submit" asp-route-saveChanges="true">Save Changes</button>
+
+                        <button class="btn btn-outline-danger my-5" type="submit" asp-route-deleteProduct="true">Delete product</button>
+
+                    </div>
+
+                    <div class="col-6 ">
+
+                        <div class="card mx-auto row text-right" style="width: 18rem;">
+                            <img class="card-img-top img-thumbnail " src="@Model.Product.ImageURL" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title ">@Model.Product.Name</h4>
+
+                                <div class="card card-body">
+                                    <p>@Model.Product.Description</p>
+                                    <p>Release Date: @Model.Console.ConsoleRelease</p>
+                                    <p>Developer: @Model.Console.ConsoleDeveloper</p>
+                                </div>
+
+                                <h6> Quantity: @Model.Product.Stock </h6>
+                                <h6> Article Number: @Model.Product.Id</h6>
+                                <h5> Price: @Model.Product.Price Kr</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             }
             else
             {
+                <div class="row">
+                    <div class="col-6">
+                        <div>
+                            <input type="text" asp-for="@Model.NewName" placeholder="@Model.Product.Name" />
+                        </div>
+                        <div>
+                            <input type="number" asp-for="@Model.NewPrice" placeholder="@Model.Product.Price" />
+                            Price (kr)
+                        </div>
+
+                        <div>
+                            <textarea asp-for="@Model.NewDescription" placeholder="@Model.Product.Description"></textarea>
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewGadgetPlatform" placeholder="Gadget platform" />
+                        </div>
+                        <div>
+                            <input type="number" asp-for="@Model.NewStock" placeholder="Stock" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewImageURL" placeholder="@Model.Product.ImageURL" />
+                        </div>
+
+                        <p>Current image used:</p>
+                        <p>@Model.Product.ImageURL</p>
+
+                        <button class="btn btn-primary my-5" type="submit" asp-route-saveChanges="true">Save Changes</button>
+
+                        <button class="btn btn-outline-danger my-5" type="submit" asp-route-deleteProduct="true">Delete product</button>
+
+                    </div>
+
+                    <div class="col-6 ">
+
+                        <div class="card mx-auto row text-right" style="width: 18rem;">
+                            <img class="card-img-top img-thumbnail " src="@Model.Product.ImageURL" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title ">@Model.Product.Name</h4>
+
+                                <div class="card card-body">
+                                    <p>@Model.Product.Description</p>
+                                    <p>Developer: @Model.Gadget.GadgetPlatform</p>
+                                </div>
+
+                                <h6> Quantity: @Model.Product.Stock </h6>
+                                <h6> Article Number: @Model.Product.Id</h6>
+                                <h5> Price: @Model.Product.Price Kr</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             }
         }

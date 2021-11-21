@@ -10,7 +10,8 @@ namespace Webbshop.Data
     {
 
 
-        public static List<GameConsole> Consoles { get; set; }
+        public static List<GameConsole> Consoles { get; set; } = new List<GameConsole>();
+        public static List<GameConsole> AddedConsoles { get; set; } = new List<GameConsole>();
 
         private static string GenerateConsoleId()
         {
@@ -111,7 +112,45 @@ namespace Webbshop.Data
 
                 return Consoles;
         }
-        
+
+        public static void NewConsole(string name, double price, string description, int stock, string consoleRelease, string consoleDeveloper, string imgURL)
+        {
+
+            GameConsole console = new GameConsole(); //Createds a new console with following properties
+
+            console.Id = GenerateConsoleId();
+            console.Name = name;
+            console.Price = price;
+            console.Description = description;
+            console.Stock = stock;
+            console.ImageURL = imgURL;
+            console.ConsoleRelease = consoleRelease;
+            console.ConsoleDeveloper = consoleDeveloper;
+
+
+            AddedConsoles.Add(console); //Adds console to list
+
+        }
+
+        public static void AddNewConsoleList()
+        {
+            GetGameConsoles();
+
+            foreach (var addedConsole in AddedConsoles)
+            {
+                Consoles.Add(addedConsole); //Adds consoles list to consoles
+            }
+        }
+        public static void RemovePendingConsole(string removeId)
+        {
+            for (int i = AddedConsoles.Count - 1; i >= 0; i--)
+            {
+                if (AddedConsoles[i].Id == removeId)
+                {
+                    AddedConsoles.Remove(AddedConsoles[i]);
+                }
+            }
+        }
 
     }
 }

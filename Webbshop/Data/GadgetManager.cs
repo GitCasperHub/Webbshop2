@@ -8,7 +8,8 @@ namespace Webbshop.Data
 {
     public static class GadgetManager
     {
-        public static List<Gadget> Gadgets { get; set; }
+        public static List<Gadget> Gadgets { get; set; } = new List<Gadget>();
+        public static List<Gadget> AddedGadgets { get; set; } = new List<Gadget>();
 
         private static string GenerateGadgetId()
         {
@@ -91,6 +92,43 @@ namespace Webbshop.Data
             return Gadgets;
         }
 
+        public static void NewGadget(string name, double price, string description, int stock, string imgURL, string gadgetPlatform)
+        {
+
+            Gadget gadget = new Gadget(); //Skapar nytt spelobjekt med nedanstående attribut
+
+            gadget.Id = GenerateGadgetId();
+            gadget.Name = name;
+            gadget.Price = price;
+            gadget.Description = description;
+            gadget.Stock = stock;
+            gadget.ImageURL = imgURL;
+            gadget.GadgetPlatform = gadgetPlatform;
+
+            AddedGadgets.Add(gadget); //Adds gadget to pending list
+
+        }
+
+        public static void AddNewGadgetList()
+        {
+            GetGadgets();
+
+            foreach (var addedGadget in AddedGadgets)
+            {
+                Gadgets.Add(addedGadget); //Merges pending list with for gadget list
+            }
+        }
+
+        public static void RemovePendingGadget(string removeId)
+        {
+            for (int i = AddedGadgets.Count - 1; i >= 0; i--)
+            {
+                if (AddedGadgets[i].Id == removeId)
+                {
+                    AddedGadgets.Remove(AddedGadgets[i]);
+                }
+            }
+        }
     }
 }
 

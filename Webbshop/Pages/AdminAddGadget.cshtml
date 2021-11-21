@@ -1,5 +1,5 @@
 ﻿@page
-@model AdminAddGameModel
+@model AdminAddGadgetModel
 @{
 }
 
@@ -20,9 +20,9 @@
 
 <form method="post">
     <div>
-        <a class="btn btn-danger btn-sm checked" asp-page="/AdminAddGame">Add a Game</a>
+        <a class="btn btn-outline-danger btn-sm checked" asp-page="/AdminAddGame">Add a Game</a>
         <a class="btn btn-outline-danger btn-sm checked" asp-page="/AdminAddConsole">Add a Console</a>
-        <a class="btn btn-outline-danger btn-sm checked" asp-page="/AdminAddGadget">Add a Gadget</a>
+        <a class="btn btn-danger btn-sm checked" asp-page="/AdminAddGadget">Add a Gadget</a>
         <a class="my-auto btn btn-outline-danger btn-sm checked" asp-page="/EditProduct">Remove or Change a product</a>
     </div>
 </form>
@@ -33,7 +33,7 @@
      
         <div class="col-sm">
             <div>
-                <h2 class="text">Add a new game</h2>
+                <h2 class="text">Add a new gadget</h2>
             </div>
 
             <div>
@@ -41,32 +41,16 @@
             </div>
             <div>
                 <input type="number" asp-for="@Model.Price" placeholder="Price" />
-                <p>Pris(kr)</p>
+                <p>Price (kr)</p>
             </div>
             <div>
-                <input type="number" asp-for="@Model.AgeRestriction" placeholder="Age restriction" />
-                <p>Åldersgräns</p>
+                <textarea asp-for="@Model.Description" placeholder="Description"></textarea>
             </div>
             <div>
-                <input type="text" asp-for="@Model.Platform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
-            </div>
-            <div >                
-                <textarea asp-for="@Model.Description" placeholder="Description"></textarea>                                  
+                <input type="text" asp-for="@Model.GadgetPlatform" placeholder="Gadget platform" />
             </div>
             <div>
                 <input type="number" asp-for="@Model.Stock" placeholder="Stock" />
-            </div>
-            <div>
-                <input type="text" asp-for="@Model.Genre" placeholder="Genre" />
-            </div>
-            <div>
-                <input type="text" asp-for="@Model.ReleaseDate" placeholder="Release date" />
-            </div>
-            <div>
-                <input class="box-shadow" type="text" asp-for="@Model.Studio" placeholder="Studio" />
-            </div>
-            <div>
-                <input type="number" asp-for="@Model.CriticScore" placeholder="Critic score" />
             </div>
             <div>
                 <input type="text" asp-for="@Model.ImageURL" placeholder="Cover image (URL)" />
@@ -83,16 +67,16 @@
     </form>
 
     <div class="col-sm my-3">
-        @foreach (var AddedGame in Model.PendingGames)
+        @foreach (var AddedGadget in Model.PendingGadgets)
         {
 
             <div class="card mx-auto row" style="width: 18rem;">
-                <img class="card-img-top img-thumbnail " src="@AddedGame.ImageURL" alt="Card image cap">
+                <img class="card-img-top img-thumbnail " src="@AddedGadget.ImageURL" alt="Card image cap">
                 <div class="card-body">
-                    <h4 class="card-title ">@AddedGame.Name</h4>
-                    <p>@AddedGame.Description</p>
-                    <h5> Pris: @AddedGame.Price  Kr</h5>
-                    <a class="btn btn-outline-primary btn-sm" type="submit" asp-route-removeId="@AddedGame.Id">Delete</a>
+                    <h4 class="card-title ">@AddedGadget.Name</h4>
+                    <p>@AddedGadget.Description</p>
+                    <h5> Pris: @AddedGadget.Price  Kr</h5>
+                    <a class="btn btn-outline-primary btn-sm" type="submit" asp-route-removeId="@AddedGadget.Id">Delete</a>
                 </div>
             </div>
         }

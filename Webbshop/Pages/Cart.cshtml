@@ -68,7 +68,7 @@
 
 
         <div>
-            <input type="radio" asp-for="@Model.ExpressShipping" value="true" />Express shipping 199 kr<br />
+            <input type="radio" asp-for="@Model.ExpressShipping" value="true" />Express Shipping 199 kr<br />
             <input type="radio" asp-for="@Model.ExpressShipping" value="false" />Regular Shipping <br />
             <input type="submit" />
         </div>
@@ -90,7 +90,7 @@
             <input type="text" asp-for="@Model.Adress" placeholder="Adress" />
         </div>
         <div>
-            <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phonenumber" />
+            <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phone Number" />
         </div>
     </div>
 
@@ -99,6 +99,9 @@
 
     @* Betalningsmetoder, 2 stycken. Collapse bar för Faktura och Betala med Kort *@
 <form method="post">
+
+    <h5>Payment Options</h5>
+
     <div>
         <input type="radio" asp-for="@Model.PaymentMethod" value="0" />Faktura<br />
         <input type="radio" asp-for="@Model.PaymentMethod" value="1" />Creditcard<br />
