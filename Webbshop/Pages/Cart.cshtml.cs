@@ -46,11 +46,15 @@ namespace Webbshop.Pages
 
         [BindProperty]
         public bool ExpressShipping { get; set; }
+        [BindProperty]
+        public int PaymentMethod { get; set; } = 0;
+
 
         [BindProperty]
         public double PriceIncShipping { get; set; }
         public void OnGet(string removeId, bool expressShipping, string incQuantity, string decQuantity)
         {
+           
 
             if (removeId != null ) //Remove product from cart
             {
@@ -58,11 +62,7 @@ namespace Webbshop.Pages
             }
 
 
-
-            if (expressShipping)
-            {
-                PriceIncShipping = TotalPrice + 199; //Price with express shipping.
-            }
+        
 
             if (incQuantity != null) //Increase quantity for product in cart
             {
@@ -76,23 +76,29 @@ namespace Webbshop.Pages
                 decQuantity = null;
             }
 
-            //TotalPrice = CartManager.TotalPrice;
+           
+           //Price summary
             TotalPrice = CartManager.GetPriceSum();
-
             ShowMoms = TotalPrice / 4;
-
-            PriceIncShipping = TotalPrice; //Price with free shipping.
+            PriceIncShipping = TotalPrice;
+            if (ExpressShipping)
+            {
+                PriceIncShipping = TotalPrice + 199;
+            }
 
         }
 
-        public void OnPost(bool expressShipping)
+        public void OnPost()
         {
-            ExpressShipping = expressShipping;
-            PriceIncShipping = TotalPrice; //Price with free shipping.
-            if (expressShipping)
+
+            if (ExpressShipping)
             {
-                PriceIncShipping = TotalPrice + 199; //Price with express shipping.
+                PriceIncShipping = TotalPrice + 199;
             }
+
+
+
+
         }
     }
 }

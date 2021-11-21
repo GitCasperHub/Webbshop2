@@ -47,9 +47,9 @@
                     </div>
                     <h5>@product.Price Kr</h5>
 
-                        <h6>Quantity: @product.CartQuantity</h6>
-                        <a class="btn btn-outline-primary" asp-route-incQuantity="@product.Id">+</a>
-                        <a class="btn btn-outline-primary" asp-route-decQuantity="@product.Id">-</a>
+                    <h6>Quantity: @product.CartQuantity</h6>
+                    <a class="btn btn-outline-primary" asp-route-incQuantity="@product.Id">+</a>
+                    <a class="btn btn-outline-primary" asp-route-decQuantity="@product.Id">-</a>
 
 
                     <a class="btn btn-danger" asp-route-removeId="@product.Id">Remove Article</a>
@@ -60,87 +60,91 @@
     </div>
 </form>
 
+
 @* Två knappar, vanlig frakt och express. Lyser runt den man tryckt på *@
 <div class="my-3">
     <h5>Select shipping method </h5>
     <form method="post">
 
-        <a class="btn btn-outline-primary" asp-route-expressShipping="false">Regular Shipping: Free</a>
-        <a class="btn btn-outline-primary " asp-route-expressShipping="true">Express Shipping: 199kr</a>
-
+        <div>
+            <input type="radio" asp-for="@Model.ExpressShipping" value="true" />Express shipping 199 kr<br />
+            <input type="radio" asp-for="@Model.ExpressShipping" value="false" />Regular Shipping <br />
+            <input type="submit" />
+        </div>
+     
     </form>
 </div>
 
-<div class="my-3 ">
-    <h5>Shipping Details</h5>
-    <div>
-        <input type="text" asp-for="@Model.WholeName" placeholder="Full Name" />
-    </div>
-    <div>
-        <input type="text" asp-for="@Model.PostalCode" placeholder="Postal Code" />
-
-        <input type="text" asp-for="@Model.Adress" placeholder="Adress" />
-    </div>
-    <div>
-        <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phonenumber" />
-    </div>
-</div>
-
-@* Betalningsmetoder, 2 stycken. Collapse bar för Faktura och Betala med Kort *@
 
 
 
-<div class="row">
-    <div class="col-9">
-        <div class="my-3 text-left">
-            <h5>Select Payment Method</h5>
-            <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseExample"
-               role="button" aria-expanded="true" aria-controls="collapseExample">
-                Faktura
-            </a>
-            <div class="collapse" id="collapseExample">
-                <div>
-                    <input type="text" asp-for="@Model.WholeName" placeholder="Full Name" />
-                </div>
-                <div>
-                    <input type="text" asp-for="@Model.PostalCode" placeholder="Postal Code" />
-
-                    <input type="text" asp-for="@Model.Adress" placeholder="Adress" />
-                </div>
-                <div>
-                    <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phonenumber" />
-                </div>
-            </div>
+    <div class="my-3 ">
+        <h5>Shipping Details</h5>
+        <div>
+            <input type="text" asp-for="@Model.WholeName" placeholder="Full Name" />
         </div>
-        <a class="btn btn-info btn-lg" data-toggle="collapse" href="#collapseCard"
-           role="button" aria-expanded="true" aria-controls="collapseCard">
-            Creditcard
-        </a>
-        <div class="collapse" id="collapseCard">
-            <div>
-                <input type="text" asp-for="@Model.CardHolder" placeholder="Full Name" />
-            </div>
-            <div>
-                <input type="text" asp-for="@Model.CardNumber" placeholder="Card Number" />
-            </div>
-            <input type="text" asp-for="@Model.CVCcode" placeholder="CVC Code" />
-            <input type="text" asp-for="@Model.CardExpire" placeholder="Expiring Date (01-25)" />
+        <div>
+            <input type="text" asp-for="@Model.PostalCode" placeholder="Postal Code" />
+
+            <input type="text" asp-for="@Model.Adress" placeholder="Adress" />
+        </div>
+        <div>
+            <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phonenumber" />
         </div>
     </div>
-    <div class="col-3">
-        <h3>Price Inc. Shipping: @Model.PriceIncShipping kr </h3>
-        
-        
-    </div>
-</div>      
-           
+
+
+    <form method="post">
+
+        @* Betalningsmetoder, 2 stycken. Collapse bar för Faktura och Betala med Kort *@
+        <div>
+            <input type="radio" asp-for="@Model.PaymentMethod" value="0" />Faktura<br />
+            <input type="radio" asp-for="@Model.PaymentMethod" value="1" />Creditcard<br />
+            <input type="submit" />
+        </div>
+
+        @if (Model.PaymentMethod == 0)
+            {
+
+            //FAKTURA
+         <div>
+            <div>
+            <input type="text" asp-for="@Model.WholeName" placeholder="Full Name" />
+            </div>
+            <div>
+            <input type="text" asp-for="@Model.PostalCode" placeholder="Postal Code" />
+
+            <input type="text" asp-for="@Model.Adress" placeholder="Adress" />
+            </div>
+            <div>
+            <input type="text" asp-for="@Model.PhoneNumber" placeholder="Phonenumber" />
+            </div>
+         </div>
+         }
+        @if (Model.PaymentMethod == 1)
+         {
+            @*//CREDITCARD*@
+             <div>
+                            <div>
+                                <input type="text" asp-for="@Model.CardHolder" placeholder="Full Name" />
+                            </div>
+                            <div>
+                                <input type="text" asp-for="@Model.CardNumber" placeholder="Card Number" />
+                            </div>
+                            <input type="text" asp-for="@Model.CVCcode" placeholder="CVC Code" />
+                            <input type="text" asp-for="@Model.CardExpire" placeholder="Expiring Date (01-25)" />
+                        </div>
+
+        }
+    </form>
+    <h3 class="text-right">Price inc. shipping: @Model.PriceIncShipping</h3>
 <div class="text-center">
     <a class="btn btn-outline-success" asp-page="/PurchaseConfirmed">Confirm Order</a>
 
 
-</div>        
+</div>
 
-    
+
 
 
 

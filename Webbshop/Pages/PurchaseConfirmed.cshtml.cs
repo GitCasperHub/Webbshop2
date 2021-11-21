@@ -12,12 +12,15 @@ using Webbshop.Data;
 namespace Webbshop.Pages
 { 
 
+
     public class PurchaseConfirmedModel : PageModel
     {
         public List<Product> OrderList = CartManager.CartList;
 
         public void OnGet()
         {
+            foreach (var product in OrderList)
+                product.Stock -= product.CartQuantity;
 
         }
     }

@@ -10,11 +10,11 @@
 
 <h4>Your Order:</h4>
 
-@foreach(var product in Model.OrderList)
-            {
+@foreach (var product in Model.OrderList)
+{
                 <div>
-                    <h5> @product.Name </h5>
-                    <p>@product.Price Kr</p>
+                    <h5> @product.Name x @product.CartQuantity </h5>
+                    <p>@product.Price Kr /Per Item</p>
                     <p>Article Number: @product.Id</p>
                 </div>
-            }
+}
