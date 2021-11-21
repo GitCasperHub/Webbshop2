@@ -76,8 +76,8 @@ namespace Webbshop.Pages
                 decQuantity = null;
             }
 
-           
-           //Price summary
+
+            //Price summary
             TotalPrice = CartManager.GetPriceSum();
             ShowMoms = TotalPrice / 4;
             PriceIncShipping = TotalPrice;
@@ -90,6 +90,9 @@ namespace Webbshop.Pages
 
         public void OnPost()
         {
+            TotalPrice = CartManager.GetPriceSum();
+            ShowMoms = TotalPrice / 4;
+            PriceIncShipping = TotalPrice;
 
             if (ExpressShipping)
             {
