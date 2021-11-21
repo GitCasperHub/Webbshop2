@@ -35,103 +35,102 @@
 
 <form method="post">
 
-    <div class="my-4 text-center">
-        <h4>Enter a product Id</h4>
-        <input type="text" asp-for="@Model.SearchId" placeholder="id:" />
-        <button class="btn-primary" type="submit">
-            Submit
-        </button>
-    </div>
 
 
-    <div>
-        @if (Model.SearchId != null)
-        {
-            @if (!Model.IdMatch) //Failed to find product with given ID
-            {
-                <h5 class="text-center text-danger">There was no product with that ID!</h5>
-            }
-            else //Successfully found product with given ID
-            {
+        <div class="my-4 text-center">
+            <h4>Enter a product Id</h4>
+            <input type="text" asp-for="@Model.SearchId" placeholder="id:" />
+            <button class="btn-primary" type="submit">
+                Submit
+            </button>
+        </div>
 
-                <h5 class="text-center text-success">Product found! Article: @Model.SearchId</h5>
-
-                //Visar relevanta inputs, GAME
-                @if (Model.SearchId.Substring(0, 2) == "GE")
+                @if (Model.SearchId != null)
                 {
-                    <div>
-                        <input type="text" asp-for="@Model.NewName" placeholder="@Model.Product.Name" />
-                    </div>
-                    <div>
-                        <input type="number" asp-for="@Model.NewPrice" placeholder="@Model.Product.Price" />
-                        Pris(kr)
-                    </div>
-                    <div>
-                        <input type="number" asp-for="@Model.NewAgeRestriction" placeholder="Åldersgräns" />
-                        Åldersgräns
-                    </div>
-                    <div>
-                        <input type="text" asp-for="@Model.NewPlatform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
-                    </div>
-                    <div>
-                        <input type="text" asp-for="@Model.NewDescription" placeholder="@Model.Product.Description" />
-                    </div>
-                    <div>
-                        <input type="number" asp-for="@Model.NewStock" placeholder="Model.Product.Stock" />
-                    </div>
-                    <div>
-                        <input type="text" asp-for="@Model.NewGenre" placeholder="Genre" />
-                    </div>
-                    <div>
-                        <input type="text" asp-for="@Model.NewReleaseDate" placeholder="Releasedatum" />
-                    </div>
-                    <div>
-                        <input class="box-shadow" type="text" asp-for="@Model.NewStudio" placeholder="Studio" />
-                    </div>
-                    <div>
-                        <input type="number" asp-for="@Model.NewCriticScore" placeholder="Betyg" />
-                    </div>
-                    <div>
-                        <input type="text" asp-for="@Model.NewImageURL" placeholder="@Model.Product.ImageURL" />
-                        @Model.NewImageURL = "tgreoåkeåth";
-                    </div>
-                    <button class="btn btn-primary" type="submit" asp-route-saveChanges="true">Save Changes</button>
+                    if (!Model.IdMatch) //Failed to find product with given ID
+                    {
+                        <h5 class="text-center text-danger">There was no product with that ID!</h5>
+                    }
+                    else //Successfully found product with given ID
+                    {
 
-                    @* Preview av produkt*@
-                    <div class="card mx-auto row text-right" style="width: 18rem;">
-                        <img class="card-img-top img-thumbnail " src="@Model.Product.ImageURL" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title ">@Model.Product.Name</h4>
+                        <h5 class="text-center text-success">Product found! Article: @Model.SearchId</h5>
 
-                            <div class="card card-body">
-                                <p>@Model.Product.Description</p>
-                                <p>Release Date: @Model.Game.ReleaseDate</p>
-                                <p>Game Studio: @Model.Game.Studio</p>
-                                <p>Age Restriction: @Model.Game.AgeRestriction</p>
-                                <p>Genre: @Model.Game.Genre</p>
-                                <p>Critic Score: @Model.Game.CriticScore / 10</p>
+                        //Visar relevanta inputs, GAME
+                        @if (Model.SearchId.Substring(0, 2) == "GE")
+                        {
+                            <div>
+                                <input type="text" asp-for="@Model.NewName" placeholder="@Model.Product.Name" />
+                            </div>
+                            <div>
+                                <input type="number" asp-for="@Model.NewPrice" placeholder="@Model.Product.Price" />
+                                Pris(kr)
+                            </div>
+                            <div>
+                                <input type="number" asp-for="@Model.NewAgeRestriction" placeholder="Åldersgräns" />
+                                Åldersgräns
+                            </div>
+                            <div>
+                                <input type="text" asp-for="@Model.NewPlatform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
+                            </div>
+                            <div>
+                                <input type="text" asp-for="@Model.NewDescription" placeholder="@Model.Product.Description" />
+                            </div>
+                            <div>
+                                <input type="number" asp-for="@Model.NewStock" placeholder="Model.Product.Stock" />
+                            </div>
+                            <div>
+                                <input type="text" asp-for="@Model.NewGenre" placeholder="Genre" />
+                            </div>
+                            <div>
+                                <input type="text" asp-for="@Model.NewReleaseDate" placeholder="Releasedatum" />
+                            </div>
+                            <div>
+                                <input class="box-shadow" type="text" asp-for="@Model.NewStudio" placeholder="Studio" />
+                            </div>
+                            <div>
+                                <input type="number" asp-for="@Model.NewCriticScore" placeholder="Betyg" />
+                            </div>
+                            <div>
+                                <input type="text" asp-for="@Model.NewImageURL" placeholder="@Model.Product.ImageURL" />
                             </div>
 
-                            <h6> Playable Platforms: @Model.Game.Platform</h6>
-                            <h6> Quantity: @Model.Product.Stock </h6>
-                            <h6> Article Number: @Model.Product.Id</h6>
-                            <h5> Price: @Model.Product.Price Kr</h5>
+                            <h5>Current image used: @Model.Product.ImageURL</h5>
 
-                        </div>
-                    </div>
+                            <button class="btn btn-primary my-5" type="submit" asp-route-saveChanges="true">Save Changes</button>
 
-                }
-                else if (Model.SearchId.Substring(0, 2) == "CE")
-                {
+                            <div class="card mx-auto row text-right" style="width: 18rem;">
+                                <img class="card-img-top img-thumbnail " src="@Model.Product.ImageURL" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title ">@Model.Product.Name</h4>
 
-                }
-                else
-                {
+                                    <div class="card card-body">
+                                        <p>@Model.Product.Description</p>
+                                        <p>Release Date: @Model.Game.ReleaseDate</p>
+                                        <p>Game Studio: @Model.Game.Studio</p>
+                                        <p>Age Restriction: @Model.Game.AgeRestriction</p>
+                                        <p>Genre: @Model.Game.Genre</p>
+                                        <p>Critic Score: @Model.Game.CriticScore / 10</p>
+                                    </div>
 
-                }
-            }
-        }
-    </div>
+                                    <h6> Playable Platforms: @Model.Game.Platform</h6>
+                                    <h6> Quantity: @Model.Product.Stock </h6>
+                                    <h6> Article Number: @Model.Product.Id</h6>
+                                    <h5> Price: @Model.Product.Price Kr</h5>
 
+                                </div>
+                            </div>
+
+                        }
+                        else if (Model.SearchId.Substring(0, 2) == "CE")
+                        {
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                 }
 
 </form>

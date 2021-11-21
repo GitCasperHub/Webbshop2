@@ -67,8 +67,6 @@ namespace Webbshop.Pages
         public void OnGet()
         {
 
-
-
         }
 
         public void OnPost(bool saveChanges)
@@ -107,11 +105,13 @@ namespace Webbshop.Pages
                 else if(SearchId.Substring(0, 2) == "CE")
                 {
                     Console = (GameConsole)Product;
+                    Console = (GameConsole)Product;
                     Console.ConsoleDeveloper = NewConsoleDeveloper;
                     Console.ConsoleRelease = NewConsoleRelease;
                 }
                 else
                 {
+                    Gadget = (Gadget)Product;
                     Gadget = (Gadget)Product;
                     Gadget.GadgetPlatform = NewGadgetPlatform;
                 }

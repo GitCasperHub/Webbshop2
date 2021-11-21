@@ -10,6 +10,8 @@ namespace Webbshop.Data
     public class AdminManager
     {
 
+        
+
         public static void RemoveProduct(string removeId)
         {
             GameManager.Games.RemoveAll(product => product.Id.Contains(removeId));
@@ -21,5 +23,6 @@ namespace Webbshop.Data
             CartManager.CartList.RemoveAll(product => product.Id.Contains(removeId));
 
         }
+
     }
 }
