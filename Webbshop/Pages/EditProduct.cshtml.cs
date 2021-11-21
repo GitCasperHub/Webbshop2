@@ -67,10 +67,28 @@ namespace Webbshop.Pages
         public void OnGet()
         {
 
+            //if (SearchId.Substring(0, 2) == "GE")
+            //{
+            //    Game = (Game)Product;
+
+            //}
+            //else if (SearchId.Substring(0, 2) == "CE")
+            //{
+            //    Console = (GameConsole)Product;
+
+            //}
+            //else
+            //{
+            //    Gadget = (Gadget)Product;
+
+            //}
         }
 
-        public void OnPost(bool saveChanges)
+        public void OnPost(bool saveChanges, bool deleteProduct)
         {
+
+            allProducts = CartManager.GetAllProducts();
+
             IdMatch = false;
 
             foreach (var product in allProducts)
@@ -105,21 +123,26 @@ namespace Webbshop.Pages
                 else if(SearchId.Substring(0, 2) == "CE")
                 {
                     Console = (GameConsole)Product;
-                    Console = (GameConsole)Product;
                     Console.ConsoleDeveloper = NewConsoleDeveloper;
                     Console.ConsoleRelease = NewConsoleRelease;
                 }
                 else
                 {
                     Gadget = (Gadget)Product;
-                    Gadget = (Gadget)Product;
                     Gadget.GadgetPlatform = NewGadgetPlatform;
                 }
 
 
                 saveChanges = false;
+
             }
 
+            if (deleteProduct)
+            {
+                AdminManager.RemoveProduct(Product.Id);
+                deleteProduct = false;
+                IdMatch = false;
+            }
 
         }
     }
