@@ -58,9 +58,7 @@ namespace Webbshop.Pages
             }
 
 
-             ShowMoms = TotalPrice  /  4;
 
-            PriceIncShipping = TotalPrice; //Price with free shipping.
             if (expressShipping)
             {
                 PriceIncShipping = TotalPrice + 199; //Price with express shipping.
@@ -77,8 +75,14 @@ namespace Webbshop.Pages
                 CartManager.DecQuantity(decQuantity);
                 decQuantity = null;
             }
+
             //TotalPrice = CartManager.TotalPrice;
             TotalPrice = CartManager.GetPriceSum();
+
+            ShowMoms = TotalPrice / 4;
+
+            PriceIncShipping = TotalPrice; //Price with free shipping.
+
         }
 
         public void OnPost(bool expressShipping)
