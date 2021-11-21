@@ -15,6 +15,8 @@ namespace Webbshop.Pages
 
         List<Product> allProducts = CartManager.GetAllProducts();
 
+       
+
         public string SearchId { get; set; } = null;
         public bool IdMatch { get; set; }
         public Product Product { get; set; }
@@ -66,7 +68,7 @@ namespace Webbshop.Pages
 
         public void OnGet()
         {
-
+          
             //if (SearchId.Substring(0, 2) == "GE")
             //{
             //    Game = (Game)Product;

@@ -59,70 +59,79 @@
             //Visar relevanta inputs, GAME
             @if (Model.SearchId.Substring(0, 2) == "GE")
             {
-                <div>
-                    <input type="text" asp-for="@Model.NewName" placeholder="@Model.Product.Name" />
-                </div>
-                <div>
-                    <input type="number" asp-for="@Model.NewPrice" placeholder="@Model.Product.Price" />
-                    Pris(kr)
-                </div>
-                <div>
-                    <input type="number" asp-for="@Model.NewAgeRestriction" placeholder="Åldersgräns" />
-                    Åldersgräns
-                </div>
-                <div>
-                    <input type="text" asp-for="@Model.NewPlatform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
-                </div>
-                <div>
-                    <input type="text" asp-for="@Model.NewDescription" placeholder="@Model.Product.Description" />
-                </div>
-                <div>
-                    <input type="number" asp-for="@Model.NewStock" placeholder="Model.Product.Stock" />
-                </div>
-                <div>
-                    <input type="text" asp-for="@Model.NewGenre" placeholder="Genre" />
-                </div>
-                <div>
-                    <input type="text" asp-for="@Model.NewReleaseDate" placeholder="Releasedatum" />
-                </div>
-                <div>
-                    <input class="box-shadow" type="text" asp-for="@Model.NewStudio" placeholder="Studio" />
-                </div>
-                <div>
-                    <input type="number" asp-for="@Model.NewCriticScore" placeholder="Betyg" />
-                </div>
-                <div>
-                    <input type="text" asp-for="@Model.NewImageURL" placeholder="@Model.Product.ImageURL" />
-                </div>
-
-                <h5>Current image used: @Model.Product.ImageURL</h5>
-
-                <button class="btn btn-primary my-5" type="submit" asp-route-saveChanges="true">Save Changes</button>
-
-                <button class="btn btn-outline-danger my-5" type="submit" asp-route-deleteProduct="true">Delete product</button>
-
-
-                <div class="card mx-auto row text-right" style="width: 18rem;">
-                    <img class="card-img-top img-thumbnail " src="@Model.Product.ImageURL" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title ">@Model.Product.Name</h4>
-
-                        <div class="card card-body">
-                            <p>@Model.Product.Description</p>
-                            <p>Release Date: @Model.Game.ReleaseDate</p>
-                            <p>Game Studio: @Model.Game.Studio</p>
-                            <p>Age Restriction: @Model.Game.AgeRestriction</p>
-                            <p>Genre: @Model.Game.Genre</p>
-                            <p>Critic Score: @Model.Game.CriticScore / 10</p>
+                <div class="row">
+                    <div class="col-6">
+                        <div>
+                            <input type="text" asp-for="@Model.NewName" placeholder="@Model.Product.Name" />
+                        </div>
+                        <div>
+                            <input type="number" asp-for="@Model.NewPrice" placeholder="@Model.Product.Price" />
+                            Pris(kr)
+                        </div>
+                        <div>
+                            <input type="number" asp-for="@Model.NewAgeRestriction" placeholder="Åldersgräns" />
+                            Åldersgräns
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewPlatform" placeholder="Platform tex. Xbox 360, Playstation 4, Nintendo DS" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewDescription" placeholder="@Model.Product.Description" />
+                        </div>
+                        <div>
+                            <input type="number" asp-for="@Model.NewStock" placeholder="Model.Product.Stock" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewGenre" placeholder="Genre" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewReleaseDate" placeholder="Releasedatum" />
+                        </div>
+                        <div>
+                            <input class="box-shadow" type="text" asp-for="@Model.NewStudio" placeholder="Studio" />
+                        </div>
+                        <div>
+                            <input type="number" asp-for="@Model.NewCriticScore" placeholder="Betyg" />
+                        </div>
+                        <div>
+                            <input type="text" asp-for="@Model.NewImageURL" placeholder="@Model.Product.ImageURL" />
                         </div>
 
-                        <h6> Playable Platforms: @Model.Game.Platform</h6>
-                        <h6> Quantity: @Model.Product.Stock </h6>
-                        <h6> Article Number: @Model.Product.Id</h6>
-                        <h5> Price: @Model.Product.Price Kr</h5>
+                        <p>Current image used:</p>
+                        <p>@Model.Product.ImageURL</p>
 
+                        <button class="btn btn-primary my-5" type="submit" asp-route-saveChanges="true">Save Changes</button>
+
+                        <button class="btn btn-outline-danger my-5" type="submit" asp-route-deleteProduct="true">Delete product</button>
+                        
+                    </div>
+                    
+                    <div class="col-6 ">
+
+                        <div class="card mx-auto row text-right" style="width: 18rem;">
+                            <img class="card-img-top img-thumbnail " src="@Model.Product.ImageURL" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title ">@Model.Product.Name</h4>
+
+                                <div class="card card-body">
+                                    <p>@Model.Product.Description</p>
+                                    <p>Release Date: @Model.Game.ReleaseDate</p>
+                                    <p>Game Studio: @Model.Game.Studio</p>
+                                    <p>Age Restriction: @Model.Game.AgeRestriction</p>
+                                    <p>Genre: @Model.Game.Genre</p>
+                                    <p>Critic Score: @Model.Game.CriticScore / 10</p>
+                                </div>
+
+                                <h6> Playable Platforms: @Model.Game.Platform</h6>
+                                <h6> Quantity: @Model.Product.Stock </h6>
+                                <h6> Article Number: @Model.Product.Id</h6>
+                                <h5> Price: @Model.Product.Price Kr</h5>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
 
             }
             else if (Model.SearchId.Substring(0, 2) == "CE")
