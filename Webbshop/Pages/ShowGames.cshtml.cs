@@ -12,7 +12,7 @@ namespace Webbshop.Pages
 {
     public class ShowGamesModel : PageModel
     {
-        public List<Game> Games = GameManager.GetGames();
+        public List<Game> games = GameManager.GetGames();
 
         
 
@@ -28,24 +28,24 @@ namespace Webbshop.Pages
        
         public void OnGet()
         {
-            Games = Games.OrderBy(game => game.Name).ToList();
+            games = games.OrderBy(game => game.Name).ToList();
 
 
 
             //Sortering Via Price
             if (Sort == "Price")
             {
-                Games = Games.OrderBy(game => game.Price).ToList();
+                games = games.OrderBy(game => game.Price).ToList();
             }
             //Sortering A till Z
             else if (Sort == "A2Z")
             {
-                Games = Games.OrderBy(game => game.Name).ToList();
+                games = games.OrderBy(game => game.Name).ToList();
             }
             //Sortering Z till A
             else if (Sort == "Z2A")
             {
-                Games = Games.OrderByDescending(game => game.Name).ToList();
+                games = games.OrderByDescending(game => game.Name).ToList();
             }
 
           
@@ -57,41 +57,19 @@ namespace Webbshop.Pages
             
 
             CartManager.AddToCart(id);
-            Games = Games.OrderBy(game => game.Name).ToList();
+            games = games.OrderBy(game => game.Name).ToList();
 
             if (Search != null)
             {
                 string SearchLower = Search.ToLower();
 
-
-
                 //Search Bar sökningar
-                if (SearchLower == "playstation")
+
+                foreach(var game in games)
                 {
-
-                    Games = Games.Where(game => game.Platform.Contains("Playstation")).ToList();
+                    games = games.Where(game => game.Name.ToLower().Contains(SearchLower)).ToList();
                 }
-                else if (SearchLower == "xbox one")
-                {
 
-                    Games = Games.Where(game => game.Platform.Contains("Xbox One")).ToList();
-
-                }
-                else if (SearchLower == "electronic arts")
-                {
-                    Games = Games.Where(game => game.Studio.Contains("Electronic Arts")).ToList();
-
-                }
-                else if (SearchLower == "activision")
-                {
-                    Games = Games.Where(game => game.Studio.Contains("Activision")).ToList();
-
-                }
-                else if (SearchLower == "wii")
-                {
-                    Games = Games.Where(game => game.Platform.Contains("Wii")).ToList();
-
-                }
             }
         }
     }

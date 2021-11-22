@@ -53,23 +53,11 @@ namespace Webbshop.Pages
             {
 
 
-                string searchWord = Search.ToLower();
+                string SearchLower = Search.ToLower();
                 //Search Bara Sökningar
-                if (searchWord == "playstation")
+                foreach (var console in consoles)
                 {
-                    consoles = consoles.Where(console => console.Name.Contains("Playstation")).ToList();
-                }
-                else if (searchWord == "sony")
-                {
-                    consoles = consoles.Where(console => console.ConsoleDeveloper.Contains("Sony")).ToList();
-                }
-                else if (searchWord == "xbox")
-                {
-                    consoles = consoles.Where(console => console.Name.Contains("Xbox")).ToList();
-                }
-                else if (searchWord == "nintendo")
-                {
-                    consoles = consoles.Where(console => console.Name.Contains("Nintendo")).ToList();
+                    consoles = consoles.Where(console => console.Name.ToLower().Contains(SearchLower)).ToList();
                 }
             }
 

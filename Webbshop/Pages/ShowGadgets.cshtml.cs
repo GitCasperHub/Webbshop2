@@ -52,21 +52,9 @@ namespace Webbshop.Pages
             {
                 string SearchLower = Search.ToLower();
 
-                if (SearchLower == "playstation")
+                foreach (var gadget in gadgets)
                 {
-
-                   gadgets = gadgets.Where(gadget =>gadget.GadgetPlatform.Contains("PlayStation")).ToList();
-                }
-
-                else if (SearchLower == "xbox")
-                {
-
-                    gadgets = gadgets.Where(gadget => gadget.GadgetPlatform.Contains("Xbox Series X & Xbox One")).ToList();
-                }
-                else if (SearchLower == "branch")
-                {
-
-                    gadgets = gadgets.Where(gadget => gadget.Name.Contains("Branch")).ToList();
+                    gadgets = gadgets.Where(gadget => gadget.Name.ToLower().Contains(SearchLower)).ToList();
                 }
             }
 
